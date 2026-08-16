@@ -1,0 +1,212 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Classic Haircut",
+      "duration": 30,
+      "price": 150
+    },
+    {
+      "id": 2,
+      "name": "Haircut + Beard",
+      "duration": 45,
+      "price": 230
+    },
+    {
+      "id": 3,
+      "name": "Hair Spa",
+      "duration": 40,
+      "price": 350
+    },
+    {
+      "id": 4,
+      "name": "Hair Coloring",
+      "duration": 60,
+      "price": 600
+    },
+    {
+      "id": 5,
+      "name": "Kids Cut",
+      "duration": 25,
+      "price": 120
+    },
+    {
+      "id": 6,
+      "name": "Beard Trim",
+      "duration": 15,
+      "price": 80
+    }
+  ],
+  "barbers": [
+    {
+      "id": 1,
+      "name": "Arun Kumar",
+      "spec": "Fades & beard sculpting",
+      "rating": 4.9,
+      "color": "#20402B",
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Vishal Raj",
+      "spec": "Classic cuts",
+      "rating": 4.7,
+      "color": "#B5502D",
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Karthik S",
+      "spec": "Coloring & spa",
+      "rating": 4.8,
+      "color": "#3d5a80",
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "Prem Anand",
+      "spec": "Kids & buzz cuts",
+      "rating": 4.6,
+      "color": "#7a5f1f",
+      "available": true
+    }
+  ],
+  "hairstyles": [
+    {
+      "id": 1,
+      "name": "Textured Crop",
+      "tag": "Round face",
+      "color": "#20402B"
+    },
+    {
+      "id": 2,
+      "name": "Fade + Beard",
+      "tag": "Square face",
+      "color": "#B5502D"
+    },
+    {
+      "id": 3,
+      "name": "Slick Back",
+      "tag": "Oval face",
+      "color": "#3d5a80"
+    },
+    {
+      "id": 4,
+      "name": "Buzz Cut",
+      "tag": "Any face",
+      "color": "#7a5f1f"
+    },
+    {
+      "id": 5,
+      "name": "Pompadour",
+      "tag": "Long face",
+      "color": "#5c4d8a"
+    },
+    {
+      "id": 6,
+      "name": "Curly Top",
+      "tag": "Round face",
+      "color": "#7a3b3b"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1001,
+      "customerName": "Rahul M.",
+      "barberId": 1,
+      "serviceId": 1,
+      "date": "Mon 10",
+      "slot": "10:00",
+      "price": 150,
+      "status": "done",
+      "points": 15
+    },
+    {
+      "id": 1002,
+      "customerName": "Sanjay P.",
+      "barberId": 1,
+      "serviceId": 2,
+      "date": "Mon 10",
+      "slot": "10:30",
+      "price": 230,
+      "status": "done",
+      "points": 15
+    },
+    {
+      "id": 1003,
+      "customerName": "Vignesh R.",
+      "barberId": 1,
+      "serviceId": 3,
+      "date": "Mon 10",
+      "slot": "11:00",
+      "price": 350,
+      "status": "progress",
+      "points": 15
+    },
+    {
+      "id": 1004,
+      "customerName": "Deepak V.",
+      "barberId": 2,
+      "serviceId": 1,
+      "date": "Mon 10",
+      "slot": "11:30",
+      "price": 150,
+      "status": "upcoming",
+      "points": 15
+    },
+    {
+      "id": 1005,
+      "customerName": "Test User",
+      "barberId": 1,
+      "serviceId": 1,
+      "date": "Mon 10",
+      "slot": "12:00",
+      "price": 150,
+      "status": "upcoming",
+      "points": 15,
+      "isPeak": false,
+      "queueAhead": 1
+    }
+  ],
+  "nextAppointmentId": 1006,
+  "nextServiceId": 7,
+  "nextBarberId": 5,
+  "users": [
+    {
+      "id": 1,
+      "role": "admin",
+      "username": "admin",
+      "email": null,
+      "name": "Shop Owner",
+      "salt": "f58b582dd47c89304cd2ca674ce4df29",
+      "passwordHash": "0a602af3ce8ddcc7db9fb30c54ac30c520195866466cd20b48fb39ca72d6bc58e29a7662ff53db8bbeb9e3d56c6241ae3a71cf810692885a9ded8d53c801149f"
+    }
+  ],
+  "nextUserId": 2,
+  "nextHairstyleId": 7,
+  "timeConfig": {
+    "times": [
+      "10:00",
+      "10:30",
+      "11:00",
+      "11:30",
+      "12:00",
+      "13:00",
+      "13:30",
+      "16:00",
+      "17:00",
+      "17:30",
+      "18:00",
+      "18:30",
+      "19:00",
+      "19:30"
+    ],
+    "peakTimes": [
+      "17:00",
+      "17:30",
+      "18:00",
+      "18:30"
+    ]
+  },
+  "blockedSlots": []
+}
