@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnipEase | Modern Hair Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
 
+<header class="top">
+  <div class="logo" role="button" tabindex="0" id="logoHome">SnipEase</div>
+  <nav class="tabs" id="mainNav">
+    <a data-view="home" class="nav-link active">Home</a>
+    <a data-view="book" class="nav-link nav-customer hidden">Book Appointment</a>
+    <a data-view="bookings" class="nav-link nav-customer hidden">My Profile</a>
+    <a data-view="admin" class="nav-link nav-admin hidden">Dashboard</a>
+    <a data-view="auth" class="nav-link" id="navAuth">Login</a>
+    <a data-view="admin-login" class="nav-link" id="navAdminLogin">Admin</a>
+    <a class="nav-link nav-logout hidden" id="navLogout">Logout</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <div class="card">
+      <h2>Precision Grooming &amp; Style</h2>
+      <p class="card-sub">Welcome to SnipEase — your premier destination for modern haircuts, classic shaves, and top-tier grooming. Create a free account, book your slot online, and skip the waiting queue.</p>
+      <button class="btn full" id="homeGetStarted">Book Your Haircut Now</button>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+    <div class="card">
+      <h2>Popular Styles</h2>
+      <div class="gallery-grid" id="homeGallery"></div>
+    </div>
+    <div class="card">
+      <h2>Services &amp; Prices</h2>
+      <div id="homeServices"></div>
+    </div>
+    <div class="card">
+      <h2>Our Barbers</h2>
+      <div class="barber-row" id="homeBarbers"></div>
+    </div>
+  </section>
+
+  <!-- CUSTOMER AUTH -->
+  <section class="view" id="view-auth">
+    <div class="card">
+      <h2>Customer Access</h2>
+      <div class="auth-tabs">
+        <button type="button" class="active" data-auth="login">Log in</button>
+        <button type="button" data-auth="register">Register</button>
+      </div>
+      <form id="customerLoginForm" class="auth-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" required autocomplete="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <button class="btn full" type="submit">Log in</button>
+      </form>
+      <form id="customerRegisterForm" class="auth-form hidden">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" required autocomplete="name" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="regEmail" required autocomplete="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password (min 6 characters)</label>
+          <input type="password" id="regPassword" required minlength="6" autocomplete="new-password" placeholder="••••••••">
+        </div>
+        <button class="btn full" type="submit">Create account</button>
+      </form>
+      <p class="auth-hint" id="authError"></p>
+    </div>
+  </section>
+
+  <!-- ADMIN LOGIN -->
+  <section class="view" id="view-admin-login">
+    <div class="card">
+      <h2>Admin Login</h2>
+      <p class="auth-sub">Shop owner access only. Customers should use Login from the header.</p>
+      <form id="adminLoginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="adminUsername" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="adminPassword" required autocomplete="current-password">
+        </div>
+        <button class="btn full" type="submit">Sign in to dashboard</button>
+      </form>
+      <p class="auth-hint" id="adminAuthError"></p>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="view" id="view-book">
+    <div class="card">
+      <h2>Schedule Appointment</h2>
+      <div id="booking-alert"></div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="service-select"></select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Barber</label>
+          <select id="barber-select"></select>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Style Inspiration (optional)</label>
+          <select id="style-select">
+            <option value="">— No preference —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="book-date">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Time Slot</label>
+        <select id="book-time">
+          <option value="">Select barber and date first</option>
+        </select>
+      </div>
+      <div class="booking-summary">
+        <div class="summary-text" id="summaryText">Select a service, barber, date, and time</div>
+        <div class="price" id="summaryPrice"></div>
+      </div>
+      <button class="btn full" id="confirmBtn" disabled>Confirm &amp; Pay at Shop</button>
+    </div>
+  </section>
+
+  <!-- MY PROFILE / BOOKINGS -->
+  <section class="view" id="view-bookings">
+    <div class="card">
+      <h2>Customer Profile &amp; Bookings</h2>
+      <div id="profileInfo" class="form-group"></div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--accent-gold);margin-bottom:15px;">Your Appointments</h3>
+      <div id="bookingsWrap"></div>
+    </div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section class="view" id="view-admin">
+    <div class="card">
+      <h2>Owner Dashboard</h2>
+      <div class="stat-grid" id="adminStats"></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3 class="card-h">Revenue by day</h3>
+        <canvas id="earningsChart" height="160"></canvas>
+      </div>
+      <div class="card">
+        <h3 class="card-h">Registered customers</h3>
+        <div id="adminCustomers" style="max-height:260px;overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-h">All bookings</h3>
+      <div style="overflow:auto">
+        <table>
+          <thead><tr><th>Customer</th><th>Email</th><th>Date</th><th>Time</th><th>Barber</th><th>Status</th><th></th></tr></thead>
+          <tbody id="adminBookingsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3 class="card-h">Manage services</h3>
+        <div id="adminServices"></div>
+        <form id="addServiceForm" class="inline-form" style="margin-top:14px">
+          <input type="text" id="svcName" placeholder="Service name" required>
+          <input type="number" id="svcDuration" placeholder="Mins" required style="max-width:80px">
+          <input type="number" id="svcPrice" placeholder="₹ Price" required style="max-width:100px">
+          <button class="btn small" type="submit">Add</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3 class="card-h">Manage barbers</h3>
+        <div id="adminBarbersManage"></div>
+        <form id="addBarberForm" class="inline-form" style="margin-top:14px">
+          <input type="text" id="barberName" placeholder="Barber name" required>
+          <input type="text" id="barberSpec" placeholder="Specialty">
+          <button class="btn small" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3 class="card-h">Manage hairstyles</h3>
+        <div id="adminHairstyles"></div>
+        <form id="addHairstyleForm" class="inline-form" style="margin-top:14px">
+          <input type="text" id="hsName" placeholder="Style name" required>
+          <input type="text" id="hsTag" placeholder="Face type / tag">
+          <button class="btn small" type="submit">Add</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3 class="card-h">Time slots</h3>
+        <p class="auth-sub" style="margin-bottom:10px">Peak times receive a 15% surcharge.</p>
+        <form id="timeConfigForm">
+          <div class="form-group">
+            <label>All slot times (comma-separated)</label>
+            <textarea id="timesInput" class="text-input" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Peak times</label>
+            <input type="text" id="peakTimesInput" placeholder="17:00, 17:30">
+          </div>
+          <button class="btn small" type="submit">Save schedule</button>
+        </form>
+        <h3 class="card-h" style="margin-top:20px">Block a slot</h3>
+        <form id="blockSlotForm" class="inline-form">
+          <select id="blockBarber" style="max-width:140px"></select>
+          <input type="text" id="blockDate" placeholder="Mon 10" required style="max-width:120px">
+          <input type="text" id="blockSlot" placeholder="10:00" required style="max-width:80px">
+          <button class="btn small" type="submit">Block</button>
+        </form>
+        <div id="blockedSlotsList" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">&copy; 2026 SnipEase. All rights reserved.</footer>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
